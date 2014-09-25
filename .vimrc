@@ -151,6 +151,12 @@ set bs=indent,eol,start
 set incsearch
 set isfname-==
 
+"Mixing relative and original linenumbers:
+" 2
+" 1
+"10 <- this is a current line
+" 1
+" 2
 set nu
 set rnu
 
