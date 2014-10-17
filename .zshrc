@@ -55,23 +55,19 @@ autoload -U colors zsh/terminfo
 
 colors
 
-# Aliases
-alias -s {avi,mpeg,mpg,mov,m2v,flv}=mplayer
-alias -s {odt,doc,sxw,rtf}=openoffice.org
-alias -s pdf=okular
-
-# Recode aliases
-alias w2k="iconv -c -f cp1251 -t koi8-r"
-alias k2w="iconv -c -f koi8-r -t cp1251"
-alias u2k="iconv -c -f utf-8 -t koi8-r"
-alias k2u="iconv -c -f koi8-r -t utf-8"
-alias U2k="iconv -c -f utf-16 -t koi8-r"
-alias k2U="iconv -c -f koi8-r -t utf-16"
-alias w2u="iconv -c -f cp1251 -t utf-8"
-
 alias ds="du -s ."
-
 alias mvimdiff="mvim -d"
+alias ll="ls -l"
+
+#Git aliases
+alias go="git checkout"
+alias gob="git checkout -b"
+alias gs="git status"
+alias gd="git diff"
+alias gb="git branch"
+alias gl="git log"
+alias gpod="git push origin develop"
+alias gpud="git pull --rebase origin develop"
 
 # Hashes
 hash -d wmL=~/work/mobile/LifelikeClassifieds
@@ -138,3 +134,18 @@ PATH=$PATH:~/work/android/android-sdk-macosx/tools/:~/bin
 
 GIT_SSL_NO_VERIFY=1
 
+# vi-mode settings
+bindkey -v
+
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+    RPROMPT="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1

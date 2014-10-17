@@ -1,13 +1,12 @@
 set nocompatible              " be improved, required
 filetype off                  " required
 
-"=====================================================
-" Vundle settings
-"=====================================================
+" Vundle settings {{{
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'      " let Vundle manage Vundle, required
+Plugin 'mbadran/headlights'     " menu with installed plugins list
 
 "---------=== Code/project navigation ===-------------
 Plugin 'scrooloose/nerdtree'            " Project and file navigation
@@ -18,6 +17,9 @@ Plugin 'fisadev/FixedTaskList.vim'      " Pending tasks list
 Plugin 'bling/vim-airline'              " Lean & mean status/tabline for vim
 Plugin 'rosenfeld/conque-term'          " Consoles as buffers
 Plugin 'vim-scripts/YankRing.vim'       " History of yanked lines
+Plugin 'xvadim/open_plugin_page'        " Quick opening of plugin page on Github
+Plugin 'mhinz/vim-startify'             " Nice start screen
+Plugin 'airblade/vim-rooter'            " Setting correct root dir
 
 "------------------=== Editing ===----------------------
 Plugin 'tpope/vim-surround'             " Parentheses, brackets, quotes, XML tags, and more
@@ -25,8 +27,10 @@ Plugin 'tpope/vim-ragtag'               " Closing html-tags
 Plugin 'jiangmiao/auto-pairs'           " Autoclosing ', \", etc.
 Plugin 'justinmk/vim-sneak'             " Fast moving
 Plugin 'kshenoy/vim-signature'          " Shows marks
+Plugin 'gorkunov/smartpairs.vim'        " Smart text object selections
+Plugin 'CmdlineComplete'
 
-Plugin 'xolox/vim-notes'                " Notes 
+Plugin 'xolox/vim-notes'                " Notes
 Plugin 'xolox/vim-misc'                 " dep. for vim-notes
 
 "--------------=== Snippets support ===---------------
@@ -34,24 +38,49 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'             " Snippets repo
 Plugin 'Valloric/YouCompleteMe'
 
+"-----------------------=== Git ===-------------------
+Plugin 'tpope/vim-fugitive'             " Git commands
+Plugin 'gregsexton/gitv'                " Analogue gitk
+
 "---------------=== Languages support ===-------------
 " --- Common ---
 Plugin 'tomtom/tcomment_vim'            " Commenting/uncommenting lines of code
 Plugin 'nathanaelkane/vim-indent-guides' " Showing indent lines
 Plugin 'craigemery/vim-autotag'         " Updating tags file on saving
 Plugin 'aperezdc/vim-template'          " Inserting templates in new files
+Plugin 'camelcasemotion'
+
 
 " --- Python ---
 Plugin 'klen/python-mode'               " Python mode (docs, refactor, lints, highlighting, run and ipdb and more)
 Plugin 'davidhalter/jedi-vim'           " Jedi-vim autocomplete plugin
 Plugin 'mitsuhiko/vim-jinja'            " Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
+Plugin 'fisadev/vim-isort'              " Imports sorting
+
+" --- Markdown ---
+Plugin 'plasticboy/vim-markdown'        " Syntax and mappings
+Plugin 'nelstrom/vim-markdown-folding'  " Folding by markdown headers
+
+" --- Docker's Dockerfile ---
+Plugin 'ekalinin/Dockerfile.vim'
+
+" --- Nginx conf file ---
+Plugin 'evanmiller/nginx-vim-syntax'
+
+" ---------=== Themes === -----------
+Plugin 'tomasr/molokai'
+Plugin 'xoria256.vim'
 
 call vundle#end()                       " required
-
+" }}}
+"
 filetype on
 filetype plugin on
 filetype plugin indent on
+syntax on
+
+" Plugins' settings {{{
 
 "Snippets dir
 let g:snippets_dir = "~/.vim/bundle/vim-snippets/snippets"
@@ -85,15 +114,15 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#show_close_button = 0
 
 "Macroses for quick switching between buffers
-nmap <leader>1 <Plug>AirlineSelectTab1i
-nmap <leader>2 <Plug>AirlineSelectTab2i
-nmap <leader>3 <Plug>AirlineSelectTab3i
-nmap <leader>4 <Plug>AirlineSelectTab4i
-nmap <leader>5 <Plug>AirlineSelectTab5i
-nmap <leader>6 <Plug>AirlineSelectTab6i
-nmap <leader>7 <Plug>AirlineSelectTab7i
-nmap <leader>8 <Plug>AirlineSelectTab8i
-nmap <leader>9 <Plug>AirlineSelectTab9i
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -110,6 +139,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 "TagBar
 let g:tagbar_autofocus = 0 " disable autofocus on Tagbar
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
 "Indent guides
 let g:indent_guides_guide_size = 1
@@ -127,8 +157,36 @@ let g:notes_directories = ['~/Documents/notes']
 let NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
 
+" Vim template
+let g:username="Vadym Khokhlov"
+
+" Markdown
+let g:vim_markdown_folding_disabled=1
+
+" Startify
+let g:startify_list_order = ['files', 'sessions', 'bookmarks']
+let g:startify_list_order = [
+            \ ['   My last recently opened files'],
+            \ 'files',
+            \ ['   These are my sessions:'],
+            \ 'sessions',
+            \ ['   These are my bookmarks:'],
+            \ 'bookmarks',
+            \ ]
+
+let g:startify_change_to_dir = 0
+let g:startify_files_number = 10
+let g:startify_bookmarks = ['~/.vimrc',]
+let g:startify_skiplist = ['vimrc',]
+let g:startify_custom_header = map(split(system('fortune ~/.vim/fortunes | cowsay -W 60 -f tux'), '\n'), '"   ". v:val') + ['','']
+
+" Rooter
+let g:rooter_patterns = ['tags', '.git', '.git/']
+" }}}
+
+" Options {{{
 if has("mac")
-  set guifont=Consolas:h13
+  set guifont=DejaVu\ Sans\ Mono:h18
   set fuoptions=maxvert,maxhorz
 endif
 
@@ -145,10 +203,9 @@ set cindent shiftwidth=4
 set expandtab
 set softtabstop=4
 
-
 set autowrite backup
 set bs=indent,eol,start
-set incsearch
+set incsearch hlsearch ignorecase smartcase
 set isfname-==
 
 "Mixing relative and original linenumbers:
@@ -160,12 +217,57 @@ set isfname-==
 set nu
 set rnu
 
+" Spelling
+set spelllang=en,ru_yo,uk
 set spell
+highlight clear SpellBad
+highlight SpellBad ctermfg=Red guifg=Red
+
+highlight clear SpellCap
+highlight SpellCap ctermfg=Blue guifg=Blue
+
+highlight clear SpellLocal
+highlight SpellLocal ctermfg=Green guifg=Green
+
 
 set langmenu=uk_ua.koi8-u
 set textwidth=120
 
-" ---== Keyboard mappings ==---
+" Jump to the next line from the beginning of previous one
+set whichwrap=b,s,<,>,[,]
+
+" File encoding menu
+set wildmenu
+set wcm=<Tab>
+    menu Encoding.koi8-r       :e ++enc=koi8-r<CR>
+    menu Encoding.koi8-u       :e ++enc=koi8-u<CR>
+    menu Encoding.windows-1251 :e ++enc=cp1251<CR>
+    menu Encoding.ibm-866      :e ++enc=ibm866<CR>
+    menu Encoding.utf-8        :e ++enc=utf-8 <CR>
+
+" Show tabs and trailing whitespace visually
+if (&termencoding == "utf-8") || has("gui_running")
+    if v:version >= 700
+        set list listchars=tab:»·,trail:·,extends:…,nbsp:‗
+    else
+        set list listchars=tab:»·,trail:·,extends:…
+    endif
+else
+    if v:version >= 700
+        set list listchars=tab:>-,trail:.,extends:>,nbsp:_
+    else
+        set list listchars=tab:>-,trail:.,extends:>
+    endif
+endif
+
+" set list
+
+" Use movement commands with ~ : ~w - change word register
+set tildeop
+
+" }}}
+
+" Keyboard mappings {{{
 
 "TaskList
 map <F2> :TaskList<CR>
@@ -184,19 +286,9 @@ map <C-F6> :bn<CR>
 " F10 - open/close NERDTree
 nmap <F10> :NERDTreeToggle<cr>
 imap <F10> <esc>:NERDTreeToggle<cr>
+" }}}
 
-" Jump to the next line from the beginning of previous one
-set whichwrap=b,s,<,>,[,]
-
-" File encoding menu
-set wildmenu
-set wcm=<Tab>
-    menu Encoding.koi8-r       :e ++enc=koi8-r<CR>
-    menu Encoding.koi8-u       :e ++enc=koi8-u<CR>
-    menu Encoding.windows-1251 :e ++enc=cp1251<CR>
-    menu Encoding.ibm-866      :e ++enc=ibm866<CR>
-    menu Encoding.utf-8        :e ++enc=utf-8 <CR>
-
+" Autocommands {{{
 
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 
@@ -206,26 +298,13 @@ autocmd BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 
-" Show tabs and trailing whitespace visually
-if (&termencoding == "utf-8") || has("gui_running")
-    if v:version >= 700
-        set list listchars=tab:»·,trail:·,extends:…,nbsp:‗
-    else
-        set list listchars=tab:»·,trail:·,extends:…
-    endif
-else
-    if v:version >= 700
-        set list listchars=tab:>-,trail:.,extends:>,nbsp:_
-    else
-        set list listchars=tab:>-,trail:.,extends:>
-    endif
-endif
-set list
-
 " Turn off any existing search
 if has("autocmd")
     au VimEnter * nohls
 endif
 
-" Use movement commands with ~ : ~w - change word register
-set tildeop
+autocmd User Startified call AirlineRefresh
+
+" }}}
+
+" vim: fdm=marker
