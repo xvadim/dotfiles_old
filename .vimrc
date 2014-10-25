@@ -33,6 +33,8 @@ Plugin 'CmdlineComplete'
 Plugin 'xolox/vim-notes'                " Notes
 Plugin 'xolox/vim-misc'                 " dep. for vim-notes
 
+Plugin 'xvadim/vim-xblogger'            " blogging
+
 "--------------=== Snippets support ===---------------
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'             " Snippets repo
@@ -71,6 +73,7 @@ Plugin 'evanmiller/nginx-vim-syntax'
 " ---------=== Themes === -----------
 Plugin 'tomasr/molokai'
 Plugin 'xoria256.vim'
+Plugin 'pyte'
 
 call vundle#end()                       " required
 " }}}
@@ -137,20 +140,20 @@ let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.whitespace = 'Ξ'
 
-"TagBar
+" TagBar
 let g:tagbar_autofocus = 0 " disable autofocus on Tagbar
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
-"Indent guides
+" Indent guides
 let g:indent_guides_guide_size = 1
 
-"Correct ctags binary
+" Correct ctags binary
 let g:autotagCtagsCmd = "/usr/local/bin/ctags"
 
-"File with yankring history
+" Dir with yankring history file
 let g:yankring_history_dir = "$HOME/.vim"
 
-"Notes directory
+" Notes directory
 let g:notes_directories = ['~/Documents/notes']
 
 " NERDTree options
@@ -162,6 +165,9 @@ let g:username="Vadym Khokhlov"
 
 " Markdown
 let g:vim_markdown_folding_disabled=1
+
+" GitV
+let g:Gitv_OpenHorizontal = 1
 
 " Startify
 let g:startify_list_order = ['files', 'sessions', 'bookmarks']

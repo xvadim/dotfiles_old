@@ -55,11 +55,16 @@ autoload -U colors zsh/terminfo
 
 colors
 
+# File aliases
+alias -s {avi,mpeg,mpg,mov,m2v,flv}=mplayer
+alias -s log=less
+
+# Common aliases
 alias ds="du -s ."
 alias mvimdiff="mvim -d"
 alias ll="ls -l"
 
-#Git aliases
+# Git aliases
 alias go="git checkout"
 alias gob="git checkout -b"
 alias gs="git status"
@@ -78,33 +83,12 @@ hash -d wm=~/work/mobile
 hash -d wa=~/work/android
 hash -d wmS=~/work/mobile/search-agents
 
-case $TERM in
- xterm* | rxvt*)
-     preexec() {print -Pn "\e]0;$0\a"}
-     precmd()  {print -Pn "\e]0;%~\a"}
-     bindkey "^[[2~" yank
-     bindkey "^[[3~" delete-char
-     bindkey "^[[5~" up-line-or-history
-     bindkey "^[[6~" down-line-or-history
-     bindkey "^[[7~" beginning-of-line
-     bindkey "^[[8~" end-of-line
-     bindkey "^[e" expand-cmd-path ## C-e for expanding path of typed command
-     bindkey "^[[A" up-line-or-search ## up arrow for back-history-search
-     bindkey "^[[B" down-line-or-search ## down arrow for fwd-history-search
-     bindkey " " magic-space ## do history expansion on space
- ;;
-esac
-
 # Errors autocorrection
 setopt CORRECT_ALL
 SPROMPT="Ошибка! Вы хотели ввести %r вместо %R? ([Y]es/[N]o/[E]dit/[A]bort) "
 
 # Moving by dirs without cd
 setopt autocd
-
-# F1 for opening help
-autoload zsh/terminfo
-bindkey $terminfo[kf1] run-help
 
 # Prompt: red color for root and yellow for non-root
 for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE;
@@ -122,12 +106,6 @@ else
     eval PR_COLOR=$PR_YELLOW
 fi
 
-precmd () {
-    vcs_info
-}
-
-PROMPT='%B[$PR_COLOR%n$PR_NO_COLOUR] $PR_WHITE%~%F{green}${vcs_info_msg_0_}$PR_WHITE%#$PR_NO_COLOUR '
-
 CDPATH=.:~:~/work
 
 PATH=$PATH:~/work/android/android-sdk-macosx/tools/:~/bin
@@ -137,8 +115,34 @@ GIT_SSL_NO_VERIFY=1
 # vi-mode settings
 bindkey -v
 
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
+case $TERM in
+ xterm* | rxvt*)
+     preexec() {print -Pn "\e]0;$1\a"}
+     precmd()  {
+         print -Pn "\e]0;%~\a"
+
+         vcs_info
+     }
+     bindkey "^[[2~" yank
+     bindkey "^[[3~" delete-char
+     bindkey "^[[5~" up-line-or-history
+     bindkey "^[[6~" down-line-or-history
+     bindkey "^[[7~" beginning-of-line
+     bindkey "^[[8~" end-of-line
+     bindkey "^[e" expand-cmd-path ## C-e for expanding path of typed command
+     bindkey "^[[A" up-line-or-search ## up arrow for back-history-search
+     bindkey "^[[B" down-line-or-search ## down arrow for fwd-history-search
+     bindkey " " magic-space ## do history expansion on space
+     bindkey '^w' backward-kill-word
+     bindkey '^r' history-incremental-search-backward
+     bindkey '^?' backward-delete-char
+     bindkey '^H' backward-delete-char
+ ;;
+esac
+
+# F1 for opening help
+autoload zsh/terminfo
+bindkey $terminfo[kf1] run-help
 
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
@@ -149,3 +153,6 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
+
+PROMPT='%B[$PR_COLOR%n$PR_NO_COLOUR] $PR_WHITE%~%F{green}${vcs_info_msg_0_}$PR_WHITE%#$PR_NO_COLOUR '
+
