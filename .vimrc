@@ -29,11 +29,13 @@ Plugin 'justinmk/vim-sneak'             " Fast moving
 Plugin 'kshenoy/vim-signature'          " Shows marks
 Plugin 'gorkunov/smartpairs.vim'        " Smart text object selections
 Plugin 'CmdlineComplete'
+Plugin 'osyo-manga/vim-anzu'
 
 Plugin 'xolox/vim-notes'                " Notes
 Plugin 'xolox/vim-misc'                 " dep. for vim-notes
 
 Plugin 'xvadim/vim-xblogger'            " blogging
+Plugin 'fmoralesc/vim-pad'              " A quick notetaking plugin
 
 "--------------=== Snippets support ===---------------
 Plugin 'SirVer/ultisnips'
@@ -51,6 +53,7 @@ Plugin 'nathanaelkane/vim-indent-guides' " Showing indent lines
 Plugin 'craigemery/vim-autotag'         " Updating tags file on saving
 Plugin 'aperezdc/vim-template'          " Inserting templates in new files
 Plugin 'camelcasemotion'
+Plugin 'rking/ag.vim'
 
 
 " --- Python ---
@@ -70,10 +73,14 @@ Plugin 'ekalinin/Dockerfile.vim'
 " --- Nginx conf file ---
 Plugin 'evanmiller/nginx-vim-syntax'
 
+" --- SQL files for access to DBMSs ---
+" Plugin 'vim-scripts/dbext.vim'
+
 " ---------=== Themes === -----------
 Plugin 'tomasr/molokai'
 Plugin 'xoria256.vim'
 Plugin 'pyte'
+Plugin 'freeo/vim-kalisi'
 
 call vundle#end()                       " required
 " }}}
@@ -85,28 +92,29 @@ syntax on
 
 " Plugins' settings {{{
 
-"Snippets dir
+" Snippets dir
 let g:snippets_dir = "~/.vim/bundle/vim-snippets/snippets"
 
-"UltiSnips
+" UltiSnips
 let g:ultisnips_python_style="sphinx"
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-"Jedi:
-"disable choose first function/method at autocomplete
+" Jedi:
+" disable choose first function/method at autocomplete
 let g:jedi#popup_select_first = 0
 
-"YouCompleteMe:
-"1. goto definition/implementation
+" YouCompleteMe:
+" 1. goto definition/implementation
 nnoremap <leader>yg :YcmCompleter GoTo<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
 
-"Vim-Airline
+" Vim-Airline
 set laststatus=2
-let g:airline_theme='badwolf'
+" let g:airline_theme='badwolf'
+let g:airline_theme='kalisi'
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tab_type = 0
@@ -115,8 +123,12 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#excludes = ['\[\d*\]', '[Vundle] Installer']
 
-"Macroses for quick switching between buffers
+
+let g:airline#extensions#anzu#enabled = 1
+
+" Macroses for quick switching between buffers
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -148,7 +160,7 @@ let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 let g:indent_guides_guide_size = 1
 
 " Correct ctags binary
-let g:autotagCtagsCmd = "/usr/local/bin/ctags"
+let g:autotagCtagsCmd = '/usr/local/bin/ctags'
 
 " Dir with yankring history file
 let g:yankring_history_dir = "$HOME/.vim"
@@ -182,12 +194,22 @@ let g:startify_list_order = [
 
 let g:startify_change_to_dir = 0
 let g:startify_files_number = 10
-let g:startify_bookmarks = ['~/.vimrc',]
+let g:startify_bookmarks = ['~/.vimrc', '~/.gvimrc']
 let g:startify_skiplist = ['vimrc',]
 let g:startify_custom_header = map(split(system('fortune ~/.vim/fortunes | cowsay -W 60 -f tux'), '\n'), '"   ". v:val') + ['','']
 
 " Rooter
 let g:rooter_patterns = ['tags', '.git', '.git/']
+
+" DBext (move to sql.vim?)
+"
+" Agents production
+let g:dbext_default_profile_agents_production='type=PGSQL:dbname=cldb:user=cluser:host=localhost:port=5434'
+
+" Vim-pad
+let g:pad#dir = "~/Documents/pad_notes/"
+let g:pad#open_in_split = 0
+let g:pad#search_backend = 'ag'
 " }}}
 
 " Options {{{
@@ -211,8 +233,13 @@ set softtabstop=4
 
 set autowrite backup
 set bs=indent,eol,start
-set incsearch hlsearch ignorecase smartcase
+set incsearch 
+set hlsearch 
+set ignorecase smartcase
 set isfname-==
+" Keep search matches in the middle of the screen
+nnoremap n nzz
+nnoremap N Nzz
 
 "Mixing relative and original linenumbers:
 " 2
@@ -292,6 +319,9 @@ map <C-F6> :bn<CR>
 " F10 - open/close NERDTree
 nmap <F10> :NERDTreeToggle<cr>
 imap <F10> <esc>:NERDTreeToggle<cr>
+
+" \c clears selection
+nmap <Leader>c :nohl<cr>
 " }}}
 
 " Autocommands {{{

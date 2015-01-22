@@ -62,7 +62,9 @@ alias -s log=less
 # Common aliases
 alias ds="du -s ."
 alias mvimdiff="mvim -d"
+alias ls="ls -G"
 alias ll="ls -l"
+alias reload="source ~/.zshrc"
 
 # Git aliases
 alias go="git checkout"
@@ -81,6 +83,7 @@ hash -d wmd=~/work/mobile/dd-html-push-parser
 hash -d we=~/work/eclipse
 hash -d wm=~/work/mobile
 hash -d wa=~/work/android
+hash -d b=~/work/blogger
 hash -d wmS=~/work/mobile/search-agents
 
 # Errors autocorrection
@@ -156,3 +159,4 @@ export KEYTIMEOUT=1
 
 PROMPT='%B[$PR_COLOR%n$PR_NO_COLOUR] $PR_WHITE%~%F{green}${vcs_info_msg_0_}$PR_WHITE%#$PR_NO_COLOUR '
 
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
