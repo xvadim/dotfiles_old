@@ -213,10 +213,6 @@ let g:pad#search_backend = 'ag'
 " }}}
 
 " Options {{{
-if has("mac")
-  set guifont=DejaVu\ Sans\ Mono:h18
-  set fuoptions=maxvert,maxhorz
-endif
 
 "Support Cyrillic mapping
 set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,фa,ыs,вd,аf,пg,рh,оj,лk,дl,яz,чx,сc,мv,иb,тn,ьm,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,х[,Х{,ъ],ж\\;,Ж:,э',Э\\",б\\,,Б<,ю.,Ю>
@@ -233,8 +229,10 @@ set softtabstop=4
 
 set autowrite backup
 set bs=indent,eol,start
-set incsearch 
-set hlsearch 
+
+" Search options
+set incsearch
+set hlsearch
 set ignorecase smartcase
 set isfname-==
 " Keep search matches in the middle of the screen
@@ -262,21 +260,11 @@ highlight SpellCap ctermfg=Blue guifg=Blue
 highlight clear SpellLocal
 highlight SpellLocal ctermfg=Green guifg=Green
 
-
-set langmenu=uk_ua.koi8-u
+" Text options
 set textwidth=120
 
 " Jump to the next line from the beginning of previous one
 set whichwrap=b,s,<,>,[,]
-
-" File encoding menu
-set wildmenu
-set wcm=<Tab>
-    menu Encoding.koi8-r       :e ++enc=koi8-r<CR>
-    menu Encoding.koi8-u       :e ++enc=koi8-u<CR>
-    menu Encoding.windows-1251 :e ++enc=cp1251<CR>
-    menu Encoding.ibm-866      :e ++enc=ibm866<CR>
-    menu Encoding.utf-8        :e ++enc=utf-8 <CR>
 
 " Show tabs and trailing whitespace visually
 if (&termencoding == "utf-8") || has("gui_running")
@@ -292,8 +280,6 @@ else
         set list listchars=tab:>-,trail:.,extends:>
     endif
 endif
-
-" set list
 
 " Use movement commands with ~ : ~w - change word register
 set tildeop
