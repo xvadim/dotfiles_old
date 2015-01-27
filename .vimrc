@@ -53,7 +53,7 @@ Plugin 'nathanaelkane/vim-indent-guides' " Showing indent lines
 Plugin 'craigemery/vim-autotag'         " Updating tags file on saving
 Plugin 'aperezdc/vim-template'          " Inserting templates in new files
 Plugin 'camelcasemotion'
-Plugin 'rking/ag.vim'
+Plugin 'rking/ag.vim'                   " Search through dir
 
 
 " --- Python ---

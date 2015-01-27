@@ -45,3 +45,17 @@ let g:ConqueTerm_StartMessages = 0
 let g:ConqueTerm_CloseOnEnd = 0
 " проверка кода в соответствии с PEP8 через <leader>8
 map <buffer> <leader>8 :PymodeLint<CR>
+
+" Toggle between single and double quotes
+" nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
+
+" Menu for python commands
+set wcm=<Tab>
+	vmenu Python.Coment\ selection\ [visual]\ (gc)	gc
+	amenu Python.Sort\ imports\ (:Isort)			<ESC>:Isort<CR>
+	vmenu Python.Sort\ selected\ imports\ (Ctrl-i)	<C-i>
+	amenu Python.-sep1-								<Nop>
+	amenu Python.IPython\ console\ (F7)				<ESC>:ConqueTermSplit ipython<CR>
+
+
+" vim:noexpandtab
