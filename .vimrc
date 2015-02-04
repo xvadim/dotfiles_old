@@ -320,6 +320,9 @@ autocmd BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 
+" Plugin 'xvadim/open_plugin_page'
+autocmd BufReadPost .vimrc amenu User.Open\ plugin\ Github-page\ (<Leader>o)	<ESC><Leader>o
+
 " Turn off any existing search
 if has("autocmd")
     au VimEnter * nohls

@@ -1,6 +1,7 @@
 source /etc/profile
 
-fpath=(~/.zsh/completion $fpath)
+# https://github.com/zsh-users/zsh-completions
+fpath=(~/.zsh/completion /usr/local/share/zsh-completions $fpath)
 autoload -U compinit
 compinit
 zmodload -a zsh/stat stat
@@ -55,6 +56,9 @@ autoload -U colors zsh/terminfo
 
 colors
 
+# colors for ls: uses gls from the coreutils
+eval `gdircolors ~/.dir_colors`
+
 # File aliases
 alias -s {avi,mpeg,mpg,mov,m2v,flv}=mplayer
 alias -s log=less
@@ -62,8 +66,8 @@ alias -s log=less
 # Common aliases
 alias ds="du -s ."
 alias mvimdiff="mvim -d"
-alias ls="ls -G"
-alias ll="ls -l"
+alias ls="gls --color=auto"
+alias ll="gls -lh --color=auto"
 alias reload="source ~/.zshrc"
 
 # Git aliases
@@ -160,3 +164,8 @@ export KEYTIMEOUT=1
 PROMPT='%B[$PR_COLOR%n$PR_NO_COLOUR] $PR_WHITE%~%F{green}${vcs_info_msg_0_}$PR_WHITE%#$PR_NO_COLOUR '
 
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+
+# https://github.com/zsh-users/zsh-syntax-highlighting
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta,bold'
