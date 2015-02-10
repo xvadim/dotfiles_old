@@ -71,14 +71,16 @@ alias ll="gls -lh --color=auto"
 alias reload="source ~/.zshrc"
 
 # Git aliases
+alias gc="git commit -a"
 alias go="git checkout"
 alias gob="git checkout -b"
-alias gs="git status"
 alias gd="git diff"
 alias gb="git branch"
 alias gl="git log"
 alias gpod="git push origin develop"
 alias gpud="git pull --rebase origin develop"
+alias gpom="git push origin master"
+alias gpum="git pull --rebase origin master"
 
 # Hashes
 hash -d wmL=~/work/mobile/LifelikeClassifieds
