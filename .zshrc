@@ -169,3 +169,6 @@ export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta,bold'
+
+# Sourcing of other files
+source $HOME/.zsh/functions.zsh
