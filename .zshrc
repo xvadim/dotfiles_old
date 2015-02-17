@@ -166,7 +166,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
-PROMPT='%B[$PR_COLOR%n$PR_NO_COLOUR] $PR_WHITE%~%F{green}${vcs_info_msg_0_}$PR_WHITE%#$PR_NO_COLOUR '
+PROMPT='%B[(20%D) $PR_COLOR%n$PR_NO_COLOUR] $PR_WHITE%~%F{green}${vcs_info_msg_0_}$PR_WHITE%#$PR_NO_COLOUR '
 
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 
