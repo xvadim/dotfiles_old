@@ -8,10 +8,16 @@ zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
 zmodload -ap zsh/mapfile mapfile
+
 # Allow tab completion in the middle of a word
 setopt COMPLETE_IN_WORD
+
+# colors for ls: uses gls from the coreutils
+eval `gdircolors ~/.dir_colors`
+
 ZLS_COLORS="$LS_COLORS"
 export ZLS_COLORS
+
 zmodload zsh/complist
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:functions' ignored-patterns '_*'
@@ -56,8 +62,6 @@ autoload -U colors zsh/terminfo
 
 colors
 
-# colors for ls: uses gls from the coreutils
-eval `gdircolors ~/.dir_colors`
 
 # File aliases
 alias -s {avi,mpeg,mpg,mov,m2v,flv}=mplayer
@@ -85,11 +89,10 @@ alias gpum="git pull --rebase origin master"
 # Hashes
 hash -d wmL=~/work/mobile/LifelikeClassifieds
 hash -d wmLL=~/work/mobile/LLAgentsClient
-hash -d wmd=~/work/mobile/dd-html-push-parser
-hash -d we=~/work/eclipse
 hash -d wm=~/work/mobile
 hash -d wa=~/work/android
 hash -d b=~/work/blogger
+hash -d wx=~/work/android/xbasoft
 hash -d wmS=~/work/mobile/search-agents
 
 # Errors autocorrection
@@ -171,6 +174,13 @@ export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta,bold'
+
+# grc - Generic Colorizer
+source "$(brew --prefix)/etc/grc.bashrc"
+alias ps="grc ps"
+
+# z
+source "`brew --prefix`/etc/profile.d/z.sh"
 
 # Sourcing of other files
 source $HOME/.zsh/functions.zsh

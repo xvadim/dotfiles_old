@@ -1,88 +1,89 @@
 set nocompatible              " be improved, required
 filetype off                  " required
 
-" Vundle settings {{{
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'      " let Vundle manage Vundle, required
-Plugin 'mbadran/headlights'     " menu with installed plugins list
+" Plug settings {{{
+" Load vim-plug
+if empty(glob("~/.vim/autoload/plug.vim"))
+    execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+
+call plug#begin('~/.vim/plugged')
 
 "---------=== Code/project navigation ===-------------
-Plugin 'scrooloose/nerdtree'            " Project and file navigation
-Plugin 'majutsushi/tagbar'              " Class/module browser
-Plugin 'fisadev/FixedTaskList.vim'      " Pending tasks list
+Plug 'scrooloose/nerdtree'            " Project and file navigation
+Plug 'majutsushi/tagbar'              " Class/module browser
+Plug 'fisadev/FixedTaskList.vim'      " Pending tasks list
 
 "------------------=== Other ===----------------------
-Plugin 'bling/vim-airline'              " Lean & mean status/tabline for vim
-Plugin 'rosenfeld/conque-term'          " Consoles as buffers
-Plugin 'vim-scripts/YankRing.vim'       " History of yanked lines
-Plugin 'xvadim/open_plugin_page'        " Quick opening of plugin page on Github
-Plugin 'mhinz/vim-startify'             " Nice start screen
-Plugin 'airblade/vim-rooter'            " Setting correct root dir
+Plug 'bling/vim-airline'              " Lean & mean status/tabline for vim
+Plug 'rosenfeld/conque-term'          " Consoles as buffers
+Plug 'vim-scripts/YankRing.vim'       " History of yanked lines
+Plug 'xvadim/open_plugin_page'        " Quick opening of plugin page on Github
+Plug 'mhinz/vim-startify'             " Nice start screen
+Plug 'airblade/vim-rooter'            " Setting correct root dir
 
 "------------------=== Editing ===----------------------
-Plugin 'tpope/vim-surround'             " Parentheses, brackets, quotes, XML tags, and more
-Plugin 'tpope/vim-ragtag'               " Closing html-tags
-Plugin 'jiangmiao/auto-pairs'           " Autoclosing ', \", etc.
-Plugin 'justinmk/vim-sneak'             " Fast moving
-Plugin 'kshenoy/vim-signature'          " Shows marks
-Plugin 'gorkunov/smartpairs.vim'        " Smart text object selections
-Plugin 'CmdlineComplete'
-Plugin 'osyo-manga/vim-anzu'
+Plug 'tpope/vim-surround'             " Parentheses, brackets, quotes, XML tags, and more
+Plug 'tpope/vim-ragtag'               " Closing html-tags
+Plug 'jiangmiao/auto-pairs'           " Autoclosing ', \", etc.
+Plug 'justinmk/vim-sneak'             " Fast moving
+Plug 'kshenoy/vim-signature'          " Shows marks
+Plug 'gorkunov/smartpairs.vim'        " Smart text object selections
+Plug 'CmdlineComplete'
+Plug 'osyo-manga/vim-anzu'
 
-Plugin 'xolox/vim-notes'                " Notes
-Plugin 'xolox/vim-misc'                 " dep. for vim-notes
+Plug 'xolox/vim-notes'                " Notes
+Plug 'xolox/vim-misc'                 " dep. for vim-notes
 
-Plugin 'xvadim/vim-xblogger'            " blogging
-Plugin 'fmoralesc/vim-pad'              " A quick notetaking plugin
+Plug 'xvadim/vim-xblogger'            " blogging
+Plug 'fmoralesc/vim-pad', {'on': 'Pad'}              " A quick notetaking plugin
+
+Plug 'xvadim/vim-cursorword', {'branch': 'feature', 'for': 'python'}         " Underlines the word under the cursor
 
 "--------------=== Snippets support ===---------------
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'             " Snippets repo
-Plugin 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'             " Snippets repo
+Plug 'Valloric/YouCompleteMe', {'do': 'sudo ./install.sh'}
 
 "-----------------------=== Git ===-------------------
-Plugin 'tpope/vim-fugitive'             " Git commands
-Plugin 'gregsexton/gitv'                " Analogue gitk
+Plug 'tpope/vim-fugitive'             " Git commands
+Plug 'gregsexton/gitv'                " Analogue gitk
 
 "---------------=== Languages support ===-------------
 " --- Common ---
-Plugin 'tomtom/tcomment_vim'            " Commenting/uncommenting lines of code
-Plugin 'nathanaelkane/vim-indent-guides' " Showing indent lines
-Plugin 'craigemery/vim-autotag'         " Updating tags file on saving
-Plugin 'aperezdc/vim-template'          " Inserting templates in new files
-Plugin 'camelcasemotion'
-Plugin 'rking/ag.vim'                   " Search through dir
+Plug 'tomtom/tcomment_vim'            " Commenting/uncommenting lines of code
+Plug 'nathanaelkane/vim-indent-guides' " Showing indent lines
+Plug 'craigemery/vim-autotag'         " Updating tags file on saving
+Plug 'aperezdc/vim-template'          " Inserting templates in new files
+Plug 'camelcasemotion'
+Plug 'rking/ag.vim'                   " Search through dir
 
 
 " --- Python ---
-Plugin 'klen/python-mode'               " Python mode (docs, refactor, lints, highlighting, run and ipdb and more)
-Plugin 'davidhalter/jedi-vim'           " Jedi-vim autocomplete plugin
-Plugin 'mitsuhiko/vim-jinja'            " Jinja support for vim
-Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
-Plugin 'fisadev/vim-isort'              " Imports sorting
+Plug 'klen/python-mode'               " Python mode (docs, refactor, lints, highlighting, run and ipdb and more)
+Plug 'davidhalter/jedi-vim'           " Jedi-vim autocomplete plugin
+Plug 'mitsuhiko/vim-jinja'            " Jinja support for vim
+Plug 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
+Plug 'fisadev/vim-isort'              " Imports sorting
 
 " --- Markdown ---
-Plugin 'plasticboy/vim-markdown'        " Syntax and mappings
-Plugin 'nelstrom/vim-markdown-folding'  " Folding by markdown headers
+Plug 'plasticboy/vim-markdown'        " Syntax and mappings
+Plug 'nelstrom/vim-markdown-folding'  " Folding by markdown headers
 
 " --- Docker's Dockerfile ---
-Plugin 'ekalinin/Dockerfile.vim'
+Plug 'ekalinin/Dockerfile.vim'
 
 " --- Nginx conf file ---
-Plugin 'evanmiller/nginx-vim-syntax'
-
-" --- SQL files for access to DBMSs ---
-" Plugin 'vim-scripts/dbext.vim'
+Plug 'evanmiller/nginx-vim-syntax'
 
 " ---------=== Themes === -----------
-Plugin 'tomasr/molokai'
-Plugin 'xoria256.vim'
-Plugin 'pyte'
-Plugin 'freeo/vim-kalisi'
+Plug 'tomasr/molokai'
+Plug 'xoria256.vim'
+Plug 'pyte'
+Plug 'freeo/vim-kalisi'
 
-call vundle#end()                       " required
+call plug#end()
+
 " }}}
 "
 filetype on
@@ -90,10 +91,10 @@ filetype plugin on
 filetype plugin indent on
 syntax on
 
-" Plugins' settings {{{
+" Plugs' settings {{{
 
 " Snippets dir
-let g:snippets_dir = "~/.vim/bundle/vim-snippets/snippets"
+let g:snippets_dir = "~/.vim/plugged/vim-snippets/snippets/"
 
 " UltiSnips
 let g:ultisnips_python_style="sphinx"
@@ -195,21 +196,17 @@ let g:startify_list_order = [
 let g:startify_change_to_dir = 0
 let g:startify_files_number = 10
 let g:startify_bookmarks = ['~/.vimrc', '~/.gvimrc']
-let g:startify_skiplist = ['vimrc',]
+let g:startify_skiplist = ['vimrc', 'COMMIT_EDITMSG']
 let g:startify_custom_header = map(split(system('fortune ~/.vim/fortunes | cowsay -W 60 -f tux'), '\n'), '"   ". v:val') + ['','']
 
 " Rooter
 let g:rooter_patterns = ['tags', '.git', '.git/']
 
-" DBext (move to sql.vim?)
-"
-" Agents production
-let g:dbext_default_profile_agents_production='type=PGSQL:dbname=cldb:user=cluser:host=localhost:port=5434'
-
 " Vim-pad
 let g:pad#dir = "~/Documents/pad_notes/"
 let g:pad#open_in_split = 0
 let g:pad#search_backend = 'ag'
+
 " }}}
 
 " Options {{{
@@ -308,6 +305,9 @@ imap <F10> <esc>:NERDTreeToggle<cr>
 
 " \c clears selection
 nmap <Leader>c :nohl<cr>
+
+" avoid pressing Shift
+nmap 8 *
 " }}}
 
 " Autocommands {{{
@@ -319,9 +319,6 @@ autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-
-" Plugin 'xvadim/open_plugin_page'
-autocmd BufReadPost .vimrc amenu User.Open\ plugin\ Github-page\ (<Leader>o)	<ESC><Leader>o
 
 " Turn off any existing search
 if has("autocmd")

@@ -15,9 +15,13 @@ colo darkerdesert
 
 set langmenu=uk_ua.koi8-u
 
-" File encoding menu
 set wildmenu
 set wcm=<Tab>
+
+" Plugin 'xvadim/open_plugin_page'
+autocmd BufReadPost .vimrc amenu User.Open\ plugin\ Github-page\ (<Leader>o)	<ESC><Leader>o
+
+" File encoding menu
 	menu Encoding.koi8-r		:e ++enc=koi8-r<CR>
 	menu Encoding.koi8-u		:e ++enc=koi8-u<CR>
 	menu Encoding.windows-1251	:e ++enc=cp1251<CR>
@@ -39,9 +43,10 @@ set wcm=<Tab>
 	amenu User.NERDTree\ (F10)							<F10>
 	amenu User.-sep1-									<Nop>
 " Plugin 'gorkunov/smartpairs.vim'
-	amenu User.Select\ text\ object\ (viv{v})			<ESC>viv
+	amenu User.Select\ text\ object\ (viv{v})			<Esc>viv
 " Vim common
 	amenu User.Clear\ search\ selection\ (<Leader>c)	<Leader>c
+	amenu User.Open\ URL\ (gx)					<Esc>gx
 " Plugin 'nathanaelkane/vim-indent-guides'
 	amenu User.Toggle\ indent\ lines\ (<Leader>ig)		<Leader>ig
 
