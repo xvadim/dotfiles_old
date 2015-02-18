@@ -21,6 +21,7 @@ Plug 'vim-scripts/YankRing.vim'       " History of yanked lines
 Plug 'xvadim/open_plugin_page'        " Quick opening of plugin page on Github
 Plug 'mhinz/vim-startify'             " Nice start screen
 Plug 'airblade/vim-rooter'            " Setting correct root dir
+Plug 'rizzatti/dash.vim'              " Dash integration
 
 "------------------=== Editing ===----------------------
 Plug 'tpope/vim-surround'             " Parentheses, brackets, quotes, XML tags, and more
@@ -305,6 +306,9 @@ imap <F10> <esc>:NERDTreeToggle<cr>
 
 " \c clears selection
 nmap <Leader>c :nohl<cr>
+"
+" \h invokes Dash for the word under cursor
+nmap <silent> <Leader>h <Plug>DashSearch
 
 " avoid pressing Shift
 nmap 8 *

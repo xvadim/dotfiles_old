@@ -18,7 +18,7 @@ set langmenu=uk_ua.koi8-u
 set wildmenu
 set wcm=<Tab>
 
-" Plugin 'xvadim/open_plugin_page'
+" Plug 'xvadim/open_plugin_page'
 autocmd BufReadPost .vimrc amenu User.Open\ plugin\ Github-page\ (<Leader>o)	<ESC><Leader>o
 
 " File encoding menu
@@ -32,25 +32,27 @@ autocmd BufReadPost .vimrc amenu User.Open\ plugin\ Github-page\ (<Leader>o)	<ES
 
 " Common commands
 "
-" Plugin 'fisadev/FixedTaskList.vim'
+" Plug 'fisadev/FixedTaskList.vim'
 	amenu User.TaskList\ (F2)							<F2>
-" Plugin 'vim-scripts/YankRing.vim'
+" Plug 'vim-scripts/YankRing.vim'
 	amenu User.YRShow\ (F3)								<F3>
-" Plugin 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 	amenu User.TagBar\ (F5)								<F5>
 	amenu User.Next\ buffer\ (C-F6)						<C-F6>
-" Plugin 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 	amenu User.NERDTree\ (F10)							<F10>
 	amenu User.-sep1-									<Nop>
-" Plugin 'gorkunov/smartpairs.vim'
+" Plug 'gorkunov/smartpairs.vim'
 	amenu User.Select\ text\ object\ (viv{v})			<Esc>viv
 " Vim common
 	amenu User.Clear\ search\ selection\ (<Leader>c)	<Leader>c
 	amenu User.Open\ URL\ (gx)					<Esc>gx
-" Plugin 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
 	amenu User.Toggle\ indent\ lines\ (<Leader>ig)		<Leader>ig
+" Plug 'rizzatti/dash.vim'
+	amenu User.Dash\ word\ (<Leader>h)					<Leader>h
 
-" Pad menu: Plugin 'fmoralesc/vim-pad'
+" Pad menu: Plug 'fmoralesc/vim-pad'
 	amenu User.-sep20-									<Nop>
 	amenu User.Pad.Pad\ list\ (:Pad\ ls)					<ESC>:Pad ls<CR>
 	amenu User.Pad.Pad\ new\ unnamed\ (:Pad\ new)					<ESC>:Pad new<CR>
