@@ -32,6 +32,7 @@ Plug 'kshenoy/vim-signature'          " Shows marks
 Plug 'gorkunov/smartpairs.vim'        " Smart text object selections
 Plug 'CmdlineComplete'
 Plug 'osyo-manga/vim-anzu'
+Plug 'dietsche/vim-lastplace'         " Restores cursor position with exception of some files
 
 Plug 'xolox/vim-notes'                " Notes
 Plug 'xolox/vim-misc'                 " dep. for vim-notes
@@ -316,13 +317,11 @@ nmap 8 *
 
 " Autocommands {{{
 
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-
-" Jump to the last position next opening 
-autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+" " Jump to the last position next opening 
+" autocmd BufReadPost *
+"     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"     \   exe "normal! g`\"" |
+"     \ endif
 
 " Turn off any existing search
 if has("autocmd")

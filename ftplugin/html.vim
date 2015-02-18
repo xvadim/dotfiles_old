@@ -1,3 +1,5 @@
+set omnifunc=htmlcomplete#CompleteTags
+
 set makeprg=linkchecker\ -v\ --check-extern\ -o\ csv\ %
 
 set errorformat=%-G#%.%#,
