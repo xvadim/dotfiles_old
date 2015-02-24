@@ -67,6 +67,8 @@ Plug 'davidhalter/jedi-vim'           " Jedi-vim autocomplete plugin
 Plug 'mitsuhiko/vim-jinja'            " Jinja support for vim
 Plug 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
 Plug 'fisadev/vim-isort'              " Imports sorting
+Plug 'kana/vim-textobj-user'          " dep. for vim-textobj-python
+Plug 'bps/vim-textobj-python'         " text objects for Python functions and classes
 
 " --- Markdown ---
 Plug 'plasticboy/vim-markdown'        " Syntax and mappings

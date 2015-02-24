@@ -2,6 +2,11 @@
 " Python-mode settings
 "=====================================================
 "
+let b:cursorword = 1
+let b:cursorword_blacklist = ['self', 'def', 'import', 'for', 'while', 'print', 
+                            \ 'from', 'class', 'def', 'classmethod', 'cls', 'return']
+
+
 let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
@@ -55,7 +60,12 @@ set wcm=<Tab>
 	amenu Python.Sort\ imports\ (:Isort)			<ESC>:Isort<CR>
 	vmenu Python.Sort\ selected\ imports\ (Ctrl-i)	<C-i>
 	amenu Python.-sep1-								<Nop>
-	amenu Python.IPython\ console\ (F7)				<ESC>:ConqueTermSplit ipython<CR>
+	amenu Python.Select\ a\ function\ (vaf)			<ESC>vaf
+	amenu Python.Select\ inner\ function\ (vif)			<ESC>vif
+	amenu Python.Select\ a\ class\ (vac)			<ESC>vac
+	amenu Python.Select\ inner\ class\ (vic)			<ESC>vic
+	amenu Python.-sep2-								<Nop>
+	amenu Python.IPython\ console\ (<F7>)			<ESC>:ConqueTermSplit ipython<CR>
 
 
 " vim:noexpandtab
