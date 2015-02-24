@@ -6,6 +6,8 @@ function g {
     git status
   fi
 }
+# Actually set the compdef to git
+compdef g=git
 
 # make and cd to a dir
 function take {
@@ -35,3 +37,7 @@ extr () {
         echo "'$1' is not a valid file"
     fi
 }
+
+# Automatically list directory contents on `cd`.
+auto-ls () { ls; }
+chpwd_functions=( auto-ls $chpwd_functions )
