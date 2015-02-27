@@ -38,18 +38,19 @@ Plug 'xolox/vim-notes'                " Notes
 Plug 'xolox/vim-misc'                 " dep. for vim-notes
 
 Plug 'xvadim/vim-xblogger'            " blogging
-Plug 'fmoralesc/vim-pad', {'on': 'Pad'}              " A quick notetaking plugin
+Plug 'fmoralesc/vim-pad', {'on': 'Pad'} " A quick notetaking plugin
+Plug 'freitass/todo.txt-vim'
 
-Plug 'xvadim/vim-cursorword', {'branch': 'feature', 'for': 'python'}         " Underlines the word under the cursor
+Plug 'xvadim/vim-cursorword', {'branch': 'feature', 'for': 'python'} " Underlines the word under the cursor
 
 "--------------=== Snippets support ===---------------
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'             " Snippets repo
-Plug 'Valloric/YouCompleteMe', {'do': 'sudo ./install.sh'}
+Plug 'Valloric/YouCompleteMe', {'do': './install.sh'}
 
 "-----------------------=== Git ===-------------------
 Plug 'tpope/vim-fugitive'             " Git commands
-Plug 'gregsexton/gitv'                " Analogue gitk
+Plug 'gregsexton/gitv'                " Analogue the gitk
 
 "---------------=== Languages support ===-------------
 " --- Common ---
@@ -187,7 +188,7 @@ let g:vim_markdown_folding_disabled=1
 let g:Gitv_OpenHorizontal = 1
 
 " Startify
-let g:startify_list_order = ['files', 'sessions', 'bookmarks']
+" let g:startify_list_order = ['files', 'sessions', 'bookmarks']
 let g:startify_list_order = [
             \ ['   My last recently opened files'],
             \ 'files',
@@ -198,8 +199,8 @@ let g:startify_list_order = [
             \ ]
 
 let g:startify_change_to_dir = 0
-let g:startify_files_number = 10
-let g:startify_bookmarks = ['~/.vimrc', '~/.gvimrc']
+let g:startify_files_number = 8
+let g:startify_bookmarks = ['~/.vimrc', '~/.gvimrc', '~/DropboxX/Dropbox/сделать/todo.txt']
 let g:startify_skiplist = ['vimrc', 'COMMIT_EDITMSG']
 let g:startify_custom_header = map(split(system('fortune ~/.vim/fortunes | cowsay -W 60 -f tux'), '\n'), '"   ". v:val') + ['','']
 
