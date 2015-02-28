@@ -265,6 +265,16 @@ highlight SpellLocal ctermfg=Green guifg=Green
 " Text options
 set textwidth=120
 
+" Always perform global substitution (no need 'g' in :%s/foo/bar/g <-)
+set gdefault
+
+" move inside long lines with j/k
+nnoremap j gj
+nnoremap k gk
+
+" quick escaping
+inoremap jj <Esc>
+
 " Jump to the next line from the beginning of previous one
 set whichwrap=b,s,<,>,[,]
 
