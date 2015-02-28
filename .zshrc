@@ -92,6 +92,7 @@ hash -d wmLL=~/work/mobile/LLAgentsClient
 hash -d wm=~/work/mobile
 hash -d wa=~/work/android
 hash -d b=~/work/blogger
+hash -d d=~/work/dotfiles
 hash -d wx=~/work/android/xbasoft
 hash -d wmS=~/work/mobile/search-agents
 
@@ -184,3 +185,7 @@ source "`brew --prefix`/etc/profile.d/z.sh"
 
 # Sourcing of other files
 source $HOME/.zsh/functions.zsh
+
+# todotxt
+export TODOTXT_DEFAULT_ACTION=ls
+alias t='todo.sh -d ~/.config/todotx/todo.cfg'
