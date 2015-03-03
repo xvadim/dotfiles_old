@@ -31,15 +31,15 @@ Plug 'justinmk/vim-sneak'             " Fast moving
 Plug 'kshenoy/vim-signature'          " Shows marks
 Plug 'gorkunov/smartpairs.vim'        " Smart text object selections
 Plug 'CmdlineComplete'
-Plug 'osyo-manga/vim-anzu'
+Plug 'osyo-manga/vim-anzu'            " Show search results count in the status line
 Plug 'dietsche/vim-lastplace'         " Restores cursor position with exception of some files
 
-Plug 'xolox/vim-notes'                " Notes
-Plug 'xolox/vim-misc'                 " dep. for vim-notes
+" Plug 'xolox/vim-notes'                " Notes
+" Plug 'xolox/vim-misc'                 " dep. for vim-notes
 
 Plug 'xvadim/vim-xblogger'            " blogging
 Plug 'fmoralesc/vim-pad', {'on': 'Pad'} " A quick notetaking plugin
-Plug 'freitass/todo.txt-vim'
+Plug 'freitass/todo.txt-vim'          " syntax and mapping for todotxt
 
 Plug 'xvadim/vim-cursorword', {'branch': 'feature', 'for': 'python'} " Underlines the word under the cursor
 
@@ -76,10 +76,10 @@ Plug 'plasticboy/vim-markdown'        " Syntax and mappings
 Plug 'nelstrom/vim-markdown-folding'  " Folding by markdown headers
 
 " --- Docker's Dockerfile ---
-Plug 'ekalinin/Dockerfile.vim'
+" Plug 'ekalinin/Dockerfile.vim'
 
 " --- Nginx conf file ---
-Plug 'evanmiller/nginx-vim-syntax'
+" Plug 'evanmiller/nginx-vim-syntax'
 
 " ---------=== Themes === -----------
 Plug 'tomasr/molokai'
@@ -131,8 +131,11 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#excludes = ['\[\d*\]', '[Vundle] Installer']
 
-
-let g:airline#extensions#anzu#enabled = 1
+" Show searches results count in the statusline
+let g:anzu_status_format = "(%i/%l)"
+nmap n <Plug>(anzu-n)zz
+nmap N <Plug>(anzu-N)zz
+nmap * <Plug>(anzu-star)
 
 " Macroses for quick switching between buffers
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -237,9 +240,8 @@ set incsearch
 set hlsearch
 set ignorecase smartcase
 set isfname-==
-" Keep search matches in the middle of the screen
-nnoremap n nzz
-nnoremap N Nzz
+
+set wildignore=*.o,*.obj,*.pyc,*.png,*~
 
 "Mixing relative and original linenumbers:
 " 2
@@ -268,13 +270,6 @@ set textwidth=120
 " Always perform global substitution (no need 'g' in :%s/foo/bar/g <-)
 set gdefault
 
-" move inside long lines with j/k
-nnoremap j gj
-nnoremap k gk
-
-" quick escaping
-inoremap jj <Esc>
-
 " Jump to the next line from the beginning of previous one
 set whichwrap=b,s,<,>,[,]
 
@@ -296,6 +291,16 @@ endif
 " Use movement commands with ~ : ~w - change word register
 set tildeop
 
+" move inside long lines with j/k
+nnoremap j gj
+nnoremap k gk
+
+" quick escaping
+inoremap jj <Esc>
+
+" Keep search matches in the middle of the screen
+" nnoremap n nzz
+" nnoremap N Nzz
 " }}}
 
 " Keyboard mappings {{{
@@ -319,7 +324,7 @@ nmap <F10> :NERDTreeToggle<cr>
 imap <F10> <esc>:NERDTreeToggle<cr>
 
 " \c clears selection
-nmap <Leader>c :nohl<cr>
+nmap <Leader>c :nohl<cr>:AnzuClearSearchStatus<cr>
 "
 " \h invokes Dash for the word under cursor
 nmap <silent> <Leader>h <Plug>DashSearch
