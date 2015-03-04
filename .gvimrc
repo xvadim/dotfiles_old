@@ -46,16 +46,18 @@ autocmd BufReadPost .vimrc amenu User.Open\ plugin\ Github-page\ (<Leader>o)	<ES
 	amenu User.Select\ text\ object\ (viv{v})			<Esc>viv
 " Vim common
 	amenu User.Clear\ search\ selection\ (<Leader>c)	<Leader>c
-	amenu User.Open\ URL\ (gx)					<Esc>gx
+	amenu User.Open\ URL\ (gx)							<Esc>gx
 " Plug 'nathanaelkane/vim-indent-guides'
 	amenu User.Toggle\ indent\ lines\ (<Leader>ig)		<Leader>ig
 " Plug 'rizzatti/dash.vim'
 	amenu User.Dash\ word\ (<Leader>h)					<Leader>h
+	nmenu User.Scratch\ buffer\ (gs)					gs
+	vmenu User.Scratch\ buffer\ (gs)					gs
 
 " Pad menu: Plug 'fmoralesc/vim-pad'
 	amenu User.-sep20-									<Nop>
 	amenu User.Pad.Pad\ list\ (:Pad\ ls)					<ESC>:Pad ls<CR>
-	amenu User.Pad.Pad\ new\ unnamed\ (:Pad\ new)					<ESC>:Pad new<CR>
-	amenu User.Pad.Pad\ new\ with\ name\ (:Pad\ new\ name)					<ESC>:Pad new 
+	amenu User.Pad.Pad\ new\ unnamed\ (:Pad\ new)			<ESC>:Pad new<CR>
+	amenu User.Pad.Pad\ new\ with\ name\ (:Pad\ new\ name)	<ESC>:Pad new 
 
 " vim:noexpandtab

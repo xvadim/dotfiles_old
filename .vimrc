@@ -33,13 +33,10 @@ Plug 'gorkunov/smartpairs.vim'        " Smart text object selections
 Plug 'CmdlineComplete'
 Plug 'osyo-manga/vim-anzu'            " Show search results count in the status line
 Plug 'dietsche/vim-lastplace'         " Restores cursor position with exception of some files
-
-" Plug 'xolox/vim-notes'                " Notes
-" Plug 'xolox/vim-misc'                 " dep. for vim-notes
+Plug 'mtth/scratch.vim'               " Scratch buffer
 
 Plug 'xvadim/vim-xblogger'            " blogging
 Plug 'fmoralesc/vim-pad', {'on': 'Pad'} " A quick notetaking plugin
-Plug 'freitass/todo.txt-vim'          " syntax and mapping for todotxt
 
 Plug 'xvadim/vim-cursorword', {'branch': 'feature', 'for': 'python'} " Underlines the word under the cursor
 
@@ -75,11 +72,8 @@ Plug 'bps/vim-textobj-python'         " text objects for Python functions and cl
 Plug 'plasticboy/vim-markdown'        " Syntax and mappings
 Plug 'nelstrom/vim-markdown-folding'  " Folding by markdown headers
 
-" --- Docker's Dockerfile ---
-" Plug 'ekalinin/Dockerfile.vim'
-
-" --- Nginx conf file ---
-" Plug 'evanmiller/nginx-vim-syntax'
+" --- TodoTxt
+Plug 'freitass/todo.txt-vim'          " syntax and mapping for todotxt
 
 " ---------=== Themes === -----------
 Plug 'tomasr/molokai'
@@ -335,16 +329,15 @@ nmap 8 *
 
 " Autocommands {{{
 
-" " Jump to the last position next opening 
-" autocmd BufReadPost *
-"     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"     \   exe "normal! g`\"" |
-"     \ endif
-
 " Turn off any existing search
 if has("autocmd")
     au VimEnter * nohls
 endif
+
+augroup vimrc
+  au!
+  au BufWritePost .vimrc,.gvimrc source %
+augroup END
 
 autocmd User Startified call AirlineRefresh
 
