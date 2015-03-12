@@ -73,6 +73,7 @@ alias mvimdiff="mvim -d"
 alias ls="gls --color=auto"
 alias ll="gls -lh --color=auto"
 alias reload="source ~/.zshrc"
+alias ra="EDITOR=mvim ranger"
 
 # Git aliases
 alias gc="git commit -a"
