@@ -15,6 +15,18 @@ function take {
   cd $1
 }
 
+function xc {
+    WORKSPACE=$(ls -dt *.xcworkspace 2> /dev/null | head -n 1)
+    if [[ -n $WORKSPACE ]]; then
+        open $WORKSPACE
+    else
+        PROJECT=$(ls -dt *.xcodeproj 2> /dev/null | head -n 1)
+        if [[ -n $PROJECT ]]; then
+            open $PROJECT
+        fi
+    fi
+}
+
 # example: extract file
 extr () {
     if [ -f $1 ] ; then
