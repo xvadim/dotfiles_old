@@ -43,7 +43,7 @@ Plug 'xvadim/vim-cursorword', {'branch': 'feature', 'for': 'python'} " Underline
 "--------------=== Snippets support ===---------------
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'             " Snippets repo
-Plug 'Valloric/YouCompleteMe', {'do': './install.sh'}
+Plug 'Valloric/YouCompleteMe'
 
 "-----------------------=== Git ===-------------------
 Plug 'tpope/vim-fugitive'             " Git commands
@@ -73,7 +73,8 @@ Plug 'plasticboy/vim-markdown'        " Syntax and mappings
 Plug 'nelstrom/vim-markdown-folding'  " Folding by markdown headers
 
 " --- TodoTxt
-Plug 'freitass/todo.txt-vim'          " syntax and mapping for todotxt
+" Plug 'freitass/todo.txt-vim'          " syntax and mapping for todotxt
+Plug 'dbeniamine/todo.txt-vim'          " syntax and mapping for todotxt
 
 " ---------=== Themes === -----------
 Plug 'tomasr/molokai'
@@ -107,9 +108,21 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:jedi#popup_select_first = 0
 
 " YouCompleteMe:
-" 1. goto definition/implementation
+" goto definition/implementation
 nnoremap <leader>yg :YcmCompleter GoTo<CR>
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_filetype_blacklist = {
+        \ 'tagbar' : 1,
+        \ 'qf' : 1,
+        \ 'notes' : 1,
+        \ 'markdown' : 1,
+        \ 'unite' : 1,
+        \ 'text' : 1,
+        \ 'vimwiki' : 1,
+        \ 'pandoc' : 1,
+        \ 'infolog' : 1,
+        \ 'mail' : 1,
+        \ 'todo' : 1}
 
 " Vim-Airline
 set laststatus=2
@@ -235,6 +248,9 @@ set hlsearch
 set ignorecase smartcase
 set isfname-==
 
+" Highlight the current line
+set cursorline
+
 set wildignore=*.o,*.obj,*.pyc,*.png,*~
 
 "Mixing relative and original linenumbers:
@@ -329,17 +345,17 @@ nmap 8 *
 
 " Autocommands {{{
 
+augroup startup
+    autocmd!
+    autocmd User Startified call AirlineRefresh
 " Turn off any existing search
-if has("autocmd")
-    au VimEnter * nohls
-endif
-
-augroup vimrc
-  au!
-  au BufWritePost .vimrc,.gvimrc source %
+    autocmd VimEnter * nohls
 augroup END
 
-autocmd User Startified call AirlineRefresh
+augroup vimrc
+  autocmd!
+  autocmd BufWritePost .vimrc,.gvimrc source %
+augroup END
 
 " }}}
 

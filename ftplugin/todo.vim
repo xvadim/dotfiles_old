@@ -1,3 +1,8 @@
+set completefunc=TodoComplete
+imap + +<C-X><C-U>
+imap @ @<C-X><C-U>
+
+" Menu
 amenu Todo.A\ priority\ (<Leader>a)			<Esc><Leader>a
 amenu Todo.B\ priority\ (<Leader>b)			<Esc><Leader>b
 amenu Todo.C\ priority\ (<Leader>c)			<Esc><Leader>c
