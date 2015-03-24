@@ -13,6 +13,8 @@ amenu Todo.-sep1-							<Nop>
 amenu Todo.Sort\ (<Leader>s)				<Esc><Leader>s
 amenu Todo.Sort\ on\ +Projects(<Leader>s+)	<Esc><Leader>s+
 amenu Todo.Sort\ on\ @Contexts(<Leader>s@)	<Esc><Leader>s@
+amenu Todo.Sort\ by\ +Projects\ and\ priority(<Leader>sp)	<Esc><Leader>sp
+amenu Todo.Sort\ on\ @Contexts\ and\ priority(<Leader>sc)	<Esc><Leader>sc
 amenu Todo.-sep2-							<Nop>
 amenu Todo.Done\ task\ (<Leader>x)			<Esc><Leader>x
 amenu Todo.Archive\ (<Leader>D)				<Esc><Leader>D
