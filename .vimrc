@@ -1,4 +1,4 @@
-set nocompatible              " be improved, required
+" set nocompatible              " be improved, required
 filetype off                  " required
 
 " Plug settings {{{
@@ -285,17 +285,9 @@ set whichwrap=b,s,<,>,[,]
 
 " Show tabs and trailing whitespace visually
 if (&termencoding == "utf-8") || has("gui_running")
-    if v:version >= 700
-        set list listchars=tab:»·,trail:·,extends:…,nbsp:‗
-    else
-        set list listchars=tab:»·,trail:·,extends:…
-    endif
+    set list listchars=tab:»·,trail:·,extends:…,nbsp:‗
 else
-    if v:version >= 700
-        set list listchars=tab:>-,trail:.,extends:>,nbsp:_
-    else
-        set list listchars=tab:>-,trail:.,extends:>
-    endif
+    set list listchars=tab:>-,trail:.,extends:>,nbsp:_
 endif
 
 " Use movement commands with ~ : ~w - change word register
@@ -306,7 +298,7 @@ nnoremap j gj
 nnoremap k gk
 
 " quick escaping
-inoremap jj <Esc>
+inoremap jj <Esc>l
 
 " Keep search matches in the middle of the screen
 " nnoremap n nzz
