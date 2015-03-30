@@ -3,7 +3,7 @@ source /etc/profile
 # https://github.com/zsh-users/zsh-completions
 fpath=(~/.zsh/completion /usr/local/share/zsh-completions $fpath)
 autoload -U compinit
-compinit
+compinit -u
 zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
@@ -59,9 +59,7 @@ setopt HIST_REDUCE_BLANKS
 MAILCHECK=0
 
 autoload -U colors zsh/terminfo
-
 colors
-
 
 # File aliases
 alias -s {avi,mpeg,mpg,mov,m2v,flv}=mplayer
@@ -170,6 +168,9 @@ export KEYTIMEOUT=1
 
 PROMPT='%B[(20%D) $PR_COLOR%n$PR_NO_COLOUR] $PR_WHITE%~%F{green}${vcs_info_msg_0_}$PR_WHITE%#$PR_NO_COLOUR '
 
+# Sourcing of other files
+source $HOME/.zsh/functions.zsh
+
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 
 # https://github.com/zsh-users/zsh-syntax-highlighting
@@ -177,16 +178,13 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta,bold'
 
-# grc - Generic Colorizer
-source "$(brew --prefix)/etc/grc.bashrc"
-alias ps="grc ps"
-
-# z
+# z - https://github.com/rupa/z
 source "`brew --prefix`/etc/profile.d/z.sh"
-
-# Sourcing of other files
-source $HOME/.zsh/functions.zsh
 
 # todotxt
 export TODOTXT_DEFAULT_ACTION=ls
-alias t='todo.sh -d ~/.config/todotx/todo.cfg'
+alias t='todo.sh -d ~/.config/todotxt/todo.cfg'
+compdef t='todo.sh'
+
+# hh - https://github.com/dvorka/hstr
+export HH_CONFIG=hicolor        # get more colors
