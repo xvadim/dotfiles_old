@@ -1,4 +1,5 @@
 " set nocompatible              " be improved, required
+
 filetype off                  " required
 
 " Plug settings {{{
@@ -235,7 +236,8 @@ set secure
 
 "Indent, tabs, spaces
 set ts=4
-set cindent shiftwidth=4
+set cindent 
+set shiftwidth=4
 set expandtab
 set softtabstop=4
 
@@ -245,7 +247,8 @@ set bs=indent,eol,start
 " Search options
 set incsearch
 set hlsearch
-set ignorecase smartcase
+set ignorecase 
+set smartcase
 set isfname-==
 
 " Highlight the current line
@@ -276,6 +279,7 @@ highlight SpellLocal ctermfg=Green guifg=Green
 
 " Text options
 set textwidth=120
+set colorcolumn=120
 
 " Always perform global substitution (no need 'g' in :%s/foo/bar/g <-)
 set gdefault
@@ -300,9 +304,8 @@ nnoremap k gk
 " quick escaping
 inoremap jj <Esc>l
 
-" Keep search matches in the middle of the screen
-" nnoremap n nzz
-" nnoremap N Nzz
+let mapleader=","
+let maplocalleader=","
 " }}}
 
 " Keyboard mappings {{{
