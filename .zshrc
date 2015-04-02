@@ -43,7 +43,7 @@ zstyle ':vcs_info:*' formats '[%b%F{red}%c%u%F{green}]'
 setopt PROMPT_SUBST
 
 # History
-HISTFILE=~/.zhistory
+export HISTFILE=~/.zhistory
 SAVEHIST=5000
 HISTSIZE=5000
 setopt APPEND_HISTORY
@@ -64,6 +64,7 @@ colors
 # File aliases
 alias -s {avi,mpeg,mpg,mov,m2v,flv}=mplayer
 alias -s log=less
+alias -s blog=mvim
 
 # Common aliases
 alias ds="du -s ."
@@ -187,4 +188,4 @@ alias t='todo.sh -d ~/.config/todotxt/todo.cfg'
 compdef t='todo.sh'
 
 # hh - https://github.com/dvorka/hstr
-export HH_CONFIG=hicolor        # get more colors
+export HH_CONFIG=hicolor,rawhistory
