@@ -236,18 +236,19 @@ set secure
 
 "Indent, tabs, spaces
 set ts=4
-set cindent 
+set cindent
 set shiftwidth=4
 set expandtab
 set softtabstop=4
 
-set autowrite backup
+set autowrite
+set backup
 set bs=indent,eol,start
 
 " Search options
 set incsearch
 set hlsearch
-set ignorecase 
+set ignorecase
 set smartcase
 set isfname-==
 
@@ -264,6 +265,8 @@ set wildignore=*.o,*.obj,*.pyc,*.png,*~
 " 2
 set nu
 set rnu
+
+set directory=~/.vim/tmp  "Set temp directory (don't litter local dir with swp/tmp files)
 
 " Spelling
 set spelllang=en,ru_yo,uk
@@ -287,6 +290,9 @@ set gdefault
 " Jump to the next line from the beginning of previous one
 set whichwrap=b,s,<,>,[,]
 
+" Show marker for breaked lines
+set showbreak=>\
+
 " Show tabs and trailing whitespace visually
 if (&termencoding == "utf-8") || has("gui_running")
     set list listchars=tab:»·,trail:·,extends:…,nbsp:‗
@@ -296,13 +302,6 @@ endif
 
 " Use movement commands with ~ : ~w - change word register
 set tildeop
-
-" move inside long lines with j/k
-nnoremap j gj
-nnoremap k gk
-
-" quick escaping
-inoremap jj <Esc>l
 
 let mapleader=","
 let maplocalleader=","
@@ -336,6 +335,16 @@ nmap <silent> <Leader>h <Plug>DashSearch
 
 " avoid pressing Shift
 nmap 8 *
+
+" ; for command mode - avoid pressing Shift again
+nnoremap ; :
+
+" move inside long lines with j/k
+nnoremap j gj
+nnoremap k gk
+
+" quick escaping
+inoremap jj <Esc>l
 " }}}
 
 " Autocommands {{{
