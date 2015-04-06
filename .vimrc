@@ -211,7 +211,7 @@ let g:startify_list_order = [
 
 let g:startify_change_to_dir = 0
 let g:startify_files_number = 8
-let g:startify_bookmarks = ['~/.vimrc', '~/.gvimrc', '~/DropboxX/Dropbox/сделать/todo.txt']
+let g:startify_bookmarks = ['~/.vimrc', '~/.gvimrc', '~/Dropbox/сделать/todo.txt']
 let g:startify_skiplist = ['vimrc', 'COMMIT_EDITMSG']
 let g:startify_custom_header = map(split(system('fortune ~/.vim/fortunes | cowsay -W 60 -f tux'), '\n'), '"   ". v:val') + ['','']
 
