@@ -255,7 +255,8 @@ set isfname-==
 " Highlight the current line
 set cursorline
 
-set wildignore=*.o,*.obj,*.pyc,*.png,*~
+set wildignore+=.hg,.git,.svn,*.pyc,*.spl,*.o,*.out,*.DS_Store,*.class,*.manifest,*~,#*#,%*
+set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.zip,*.xc*,*.pbxproj,*.xcodeproj/**,*.xcassets/**
 
 "Mixing relative and original linenumbers:
 " 2
@@ -291,7 +292,7 @@ set gdefault
 set whichwrap=b,s,<,>,[,]
 
 " Show marker for breaked lines
-set showbreak=>\
+set showbreak=↪
 
 " Show tabs and trailing whitespace visually
 if (&termencoding == "utf-8") || has("gui_running")
@@ -302,6 +303,8 @@ endif
 
 " Use movement commands with ~ : ~w - change word register
 set tildeop
+
+set lazyredraw
 
 let mapleader=","
 let maplocalleader=","
@@ -345,6 +348,8 @@ nnoremap k gk
 
 " quick escaping
 inoremap jj <Esc>l
+
+nnoremap Y y$
 " }}}
 
 " Autocommands {{{
