@@ -95,7 +95,7 @@ syntax on
 " Plugs' settings {{{
 
 " Snippets dir
-let g:snippets_dir = "~/.vim/plugged/vim-snippets/snippets/"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
 
 " UltiSnips
 let g:ultisnips_python_style="sphinx"
@@ -181,9 +181,6 @@ let g:autotagCtagsCmd = '/usr/local/bin/ctags'
 
 " Dir with yankring history file
 let g:yankring_history_dir = "$HOME/.vim"
-
-" Notes directory
-let g:notes_directories = ['~/Documents/notes']
 
 " NERDTree options
 let NERDTreeQuitOnOpen = 1
